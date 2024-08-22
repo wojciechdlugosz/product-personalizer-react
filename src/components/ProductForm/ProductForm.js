@@ -5,14 +5,27 @@ import styles from "./ProductForm.module.scss";
 import PropTypes from "prop-types";
 
 const ProductForm = ({
-  handleSubmit,
   currentSize,
   setCurrentSize,
   sizes,
   currentColor,
   setCurrentColor,
   colors,
+  title,
+  price,
 }) => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const selectedProduct = {
+      Name: title,
+      Price: price,
+      Size: currentSize,
+      Color: currentColor,
+    };
+
+    console.log("Summary: ", selectedProduct);
+  };
   return (
     <form onSubmit={handleSubmit}>
       <OptionSize
@@ -33,13 +46,14 @@ const ProductForm = ({
 };
 
 ProductForm.propTypes = {
-  handleSubmit: PropTypes.func.isRequired,
   currentSize: PropTypes.string.isRequired,
   setCurrentSize: PropTypes.func.isRequired,
   sizes: PropTypes.array.isRequired,
   currentColor: PropTypes.string.isRequired,
   setCurrentColor: PropTypes.func.isRequired,
   colors: PropTypes.array.isRequired,
+  title: PropTypes.string.isRequired,
+  price: PropTypes.number.isRequired,
 };
 
 export default ProductForm;
